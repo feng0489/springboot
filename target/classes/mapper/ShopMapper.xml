@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.group.xudy.mapper.ShopMapper">
+
+    <resultMap id="ShopResultMap" type="cn.group.xudy.model.Shop" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <id column="reason" property="reason" jdbcType="VARCHAR" />
+        <id column="files" property="files" jdbcType="VARCHAR" />
+        <!-- ofType指定students集合中的对象类型 -->
+        <!--<association property="claimFilesModelList" javaType="cn.group.xudy.model.ClaimFilesModel">-->
+        <!--</association>-->
+        <!--<collection property="claimFilesModelList" ofType="cn.group.xudy.model.ClaimFilesModel" column="id" select="getStudent"></collection>-->
+        <!--<collection property="claimFilesModelList" ofType="cn.group.xudy.model.ClaimFilesModel" column="id">-->
+            <!--<id column="file_name" property="fileName" jdbcType="VARCHAR" />-->
+        <!--</collection>-->
+    </resultMap>
+
+    <sql id="Shop_Column_List" >
+        id
+    </sql>
+
+
+    <select id="selectShop" resultMap="ShopResultMap">
+        select * from shop
+    </select>
+
+    <select id="selectShopById">
+        SELECT * FROM shop WHERE id=#{id}
+    </select>
+
+
+
+    <insert id="insertShop">
+        INSERT INTO shop(total_price, free_price, price, commission_rate, coupon_total_count, coupon_info, coupon_remain_count, coupon_click_url, photo_url, shop_title, shop_nick, item_description, shop_id, title, shop_from, free_start_time, free_end_time, goods_sum, shop_type) " +
+                          "VALUES (#{total_price}, #{free_price}, #{price},  #{commission_rate}, #{coupon_total_count}, #{coupon_info}, #{coupon_remain_count}, #{coupon_click_url}, #{photo_url}, #{shop_title}, #{shop_nick}, #{item_description}, #{shop_id}, #{title}, #{shop_from}, #{free_start_time}, #{free_end_time}, #{goods_sum}, #{shop_type});
+    </insert>
+
+    <!--<select id="getStudent" parameterType="int" resultType="cn.group.xudy.model.ClaimFilesModel">-->
+        <!--SELECT * FROM claim_files WHERE claim_id=#{id}-->
+    <!--</select>-->
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
