@@ -200,13 +200,22 @@ public class HttpUtils {
         int i=0;
         while(iter.hasNext()){  //执行过程中会执行数据锁定，性能稍差，若在循环过程中要去掉某个元素只能调用iter.remove()方法。
             //System.out.println(iter.next());
-            shops.put(i,iter.next()+"\n");
+            shops.put(i,iter.next());
             i++;
         }
+
+        //System.out.println("Map:"+shops+"\n");
+        int j = 0;
+        for (Integer key : shops.keySet()) {
+            //System.out.println("Key = " + shops.get(key)+"\n");
+            Map<String, Object> shop = (Map<String, Object>) shops.get(key);
+            Map<String, Object> item = (Map<String, Object>) shop.get("item");
+            System.out.println(j+"title:" +item.get("title")+"\n");
+            j++;
+        }
+
         long time2=System.currentTimeMillis();
         System.out.println("当前程序耗时："+(time2-time1)+"ms");
-        System.out.println("Map:"+shops);
-
 
     }
 }
